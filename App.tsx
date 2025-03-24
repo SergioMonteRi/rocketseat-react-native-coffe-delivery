@@ -3,10 +3,13 @@ import styled, { ThemeProvider } from 'styled-components/native'
 
 import theme from '@theme/theme'
 
+import Cappuccino from 'src/assets/images/coffes/capuccino.svg'
+
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AppContainer>
+        <Cappuccino width={100} height={100} />
         <AppName>Coffe Delivery!</AppName>
         <StatusBar style="auto" />
       </AppContainer>
