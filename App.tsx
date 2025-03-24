@@ -1,20 +1,27 @@
 import { StatusBar } from 'expo-status-bar'
-import { StyleSheet, Text, View } from 'react-native'
+import styled, { ThemeProvider } from 'styled-components/native'
+
+import theme from '@theme/theme'
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <AppName>Coffe Delivery!</AppName>
+        <StatusBar style="auto" />
+      </AppContainer>
+    </ThemeProvider>
   )
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-})
+const AppContainer = styled.View`
+  flex: 1;
+  background-color: ${({ theme }) => theme.COLORS.PURPLE};
+  align-items: center;
+  justify-content: center;
+`
+
+const AppName = styled.Text`
+  font-size: ${({ theme }) => theme.FONT_SIZE.TITLE.LG}px;
+  color: ${({ theme }) => theme.COLORS.WHITE};
+`
