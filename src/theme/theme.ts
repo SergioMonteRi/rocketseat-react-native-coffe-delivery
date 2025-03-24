@@ -27,11 +27,11 @@ const theme = {
   },
   FONT_FAMILY: {
     BALOO2: {
-      BALOO2_BOLD: 'Baloo2-Bold',
+      BALOO2_BOLD: 'Baloo2_700Bold',
     },
     ROBOTO: {
-      ROBOTO_BOLD: 'Roboto-Bold',
-      ROBOTO_REGULAR: 'Roboto-Regular',
+      ROBOTO_REGULAR: 'Roboto_400Regular',
+      ROBOTO_BOLD: 'Roboto_700Bold',
     },
   },
   FONT_SIZE: {
