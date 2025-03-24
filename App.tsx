@@ -1,7 +1,7 @@
 /* eslint-disable camelcase */
 
 import { StatusBar } from 'expo-status-bar'
-import styled, { ThemeProvider } from 'styled-components/native'
+import { ThemeProvider } from 'styled-components/native'
 import { Baloo2_700Bold } from '@expo-google-fonts/baloo-2'
 import {
   useFonts,
@@ -11,7 +11,7 @@ import {
 
 import theme from '@theme/theme'
 
-import Cappuccino from 'src/assets/images/coffes/capuccino.svg'
+import { Home } from '@screens/Home'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,24 +26,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppContainer>
-        <Cappuccino width={100} height={100} />
-        <AppName>Coffe Delivery!</AppName>
-        <StatusBar style="auto" />
-      </AppContainer>
+      <StatusBar style="auto" />
+
+      <Home />
     </ThemeProvider>
   )
 }
-
-const AppContainer = styled.View`
-  flex: 1;
-  background-color: ${({ theme }) => theme.COLORS.PURPLE};
-  align-items: center;
-  justify-content: center;
-`
-
-const AppName = styled.Text`
-  font-size: ${({ theme }) => theme.FONT_SIZE.TITLE.LG}px;
-  font-family: ${({ theme }) => theme.FONT_FAMILY.BALOO2.BALOO2_BOLD};
-  color: ${({ theme }) => theme.COLORS.WHITE};
-`
