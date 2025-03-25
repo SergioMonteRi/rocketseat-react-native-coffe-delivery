@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar'
 import { useLocation } from '@hooks/useLocation'
 import { useTheme } from 'styled-components/native'
 import { MapPin, ShoppingCart, MagnifyingGlass } from 'phosphor-react-native'
-import { Keyboard, SafeAreaView, TouchableWithoutFeedback } from 'react-native'
+import { Keyboard, TouchableWithoutFeedback } from 'react-native'
 
 import {
   BgImage,
@@ -39,11 +39,11 @@ export const Header = () => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: COLORS.GRAY_100 }}>
+    <HeaderContainer>
       <StatusBar style="light" />
 
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-        <HeaderContainer>
+        <>
           <TopContainer>
             <LocationContainer>
               <MapPin color={COLORS.PURPLE} size={20} weight="fill" />
@@ -81,8 +81,8 @@ export const Header = () => {
           </FilterContainer>
 
           <BgImage source={CoffeeBgImage} />
-        </HeaderContainer>
+        </>
       </TouchableWithoutFeedback>
-    </SafeAreaView>
+    </HeaderContainer>
   )
 }

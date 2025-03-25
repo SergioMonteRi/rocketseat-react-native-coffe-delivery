@@ -1,11 +1,17 @@
-import { View } from 'react-native'
-
 import { Header } from './components/Header'
+import { CoffeeCarousel } from './components/CoffeeCarousel'
+import { CarouselWrapper, HeaderWrapper, HomeContainer } from './styles'
 
 export const Home = () => {
   return (
-    <View>
-      <Header />
-    </View>
+    <HomeContainer>
+      <HeaderWrapper>
+        <Header />
+      </HeaderWrapper>
+
+      <CarouselWrapper>
+        <CoffeeCarousel />
+      </CarouselWrapper>
+    </HomeContainer>
   )
 }

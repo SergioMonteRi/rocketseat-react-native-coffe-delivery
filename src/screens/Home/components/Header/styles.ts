@@ -2,6 +2,8 @@ import styled, { css } from 'styled-components/native'
 
 export const HeaderContainer = styled.View`
   height: 340px;
+  padding-top: 36px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_100};
 `
 
 export const TopContainer = styled.View`
@@ -64,6 +66,5 @@ export const FilterInput = styled.TextInput.attrs(({ theme }) => ({
 export const BgImage = styled.ImageBackground`
   width: 83px;
   height: 83px;
-  z-index: -1;
   align-self: flex-end;
 `
