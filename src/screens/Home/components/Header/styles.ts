@@ -1,8 +1,8 @@
+import Animated from 'react-native-reanimated'
 import styled, { css } from 'styled-components/native'
 
-export const HeaderContainer = styled.View`
-  height: 340px;
-  padding-top: 36px;
+export const AnimatedHeaderContainer = styled(Animated.View)`
+  padding-top: 48px;
   background-color: ${({ theme }) => theme.COLORS.GRAY_100};
 `
 
@@ -61,6 +61,8 @@ export const FilterInput = styled.TextInput.attrs(({ theme }) => ({
     color: ${theme.COLORS.GRAY_700};
     font-size: ${theme.FONT_SIZE.TEXT.SM}px;
   `}
+
+  flex: 1;
 `
 
 export const BgImage = styled.ImageBackground`

@@ -10,8 +10,8 @@ export const CoffeeCarousel = () => {
 
   return (
     <Animated.View
-      entering={SlideInRight.delay(500).duration(700)}
-      style={{ minHeight: 450 }}
+      entering={SlideInRight.delay(700).duration(900)}
+      style={{ minHeight: 360 }}
     >
       <FlatList
         keyExtractor={(item) => item.id.toString()}

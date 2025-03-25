@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { useLocation } from '@hooks/useLocation'
 import { useTheme } from 'styled-components/native'
-import { MapPin, ShoppingCart, MagnifyingGlass } from 'phosphor-react-native'
 import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { MapPin, ShoppingCart, MagnifyingGlass } from 'phosphor-react-native'
 
 import {
   BgImage,
@@ -12,13 +12,19 @@ import {
   TopContainer,
   LocationText,
   CartContainer,
-  HeaderContainer,
   FilterContainer,
   LocationContainer,
   FilterInputContainer,
+  AnimatedHeaderContainer,
 } from './styles'
 
 import CoffeeBgImage from '@assets/images/backgrounds/coffee-bg.png'
+import {
+  Easing,
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from 'react-native-reanimated'
 
 export const Header = () => {
   const { COLORS } = useTheme()
@@ -27,6 +33,14 @@ export const Header = () => {
   const [isFilterFocused, setIsFilterFocused] = useState(false)
   const [filterValue, setFilterValue] = useState('')
 
+  const heightProgress = useSharedValue(220)
+
+  const styledAnimatedHeader = useAnimatedStyle(() => {
+    return {
+      height: heightProgress.value,
+    }
+  })
+
   const filterIconColor = isFilterFocused
     ? COLORS.YELLOW
     : filterValue.length > 0
@@ -34,15 +48,21 @@ export const Header = () => {
       : COLORS.GRAY_400
 
   const handleSearch = () => {
-    console.log('pressionou', filterValue)
     Keyboard.dismiss()
   }
 
-  return (
-    <HeaderContainer>
-      <StatusBar style="light" />
+  useEffect(() => {
+    heightProgress.value = withTiming(380, {
+      duration: 800,
+      easing: Easing.out(Easing.exp),
+    })
+  }, [heightProgress])
 
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+  return (
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+      <AnimatedHeaderContainer style={styledAnimatedHeader}>
+        <StatusBar style="light" />
+
         <>
           <TopContainer>
             <LocationContainer>
@@ -82,7 +102,7 @@ export const Header = () => {
 
           <BgImage source={CoffeeBgImage} />
         </>
-      </TouchableWithoutFeedback>
-    </HeaderContainer>
+      </AnimatedHeaderContainer>
+    </TouchableWithoutFeedback>
   )
 }

@@ -2,7 +2,7 @@ import styled from 'styled-components/native'
 
 export const HomeContainer = styled.View`
   flex: 1;
-  position: relative;
+  background-color: ${({ theme }) => theme.COLORS.WHITE};
 `
 
 export const HeaderWrapper = styled.View`
@@ -14,6 +14,6 @@ export const CarouselWrapper = styled.View`
   width: 100%;
 
   z-index: 2;
-  top: 215px;
+  top: 270px;
   position: absolute;
 `
