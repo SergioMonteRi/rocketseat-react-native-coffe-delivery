@@ -2,8 +2,14 @@ import { useEffect, useState } from 'react'
 import { StatusBar } from 'expo-status-bar'
 import { useLocation } from '@hooks/useLocation'
 import { useTheme } from 'styled-components/native'
-import { Keyboard, TouchableWithoutFeedback } from 'react-native'
+import { Keyboard } from 'react-native'
 import { MapPin, ShoppingCart, MagnifyingGlass } from 'phosphor-react-native'
+import {
+  Easing,
+  withTiming,
+  useSharedValue,
+  useAnimatedStyle,
+} from 'react-native-reanimated'
 
 import {
   BgImage,
@@ -19,12 +25,6 @@ import {
 } from './styles'
 
 import CoffeeBgImage from '@assets/images/backgrounds/coffee-bg.png'
-import {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withTiming,
-} from 'react-native-reanimated'
 
 export const Header = () => {
   const { COLORS } = useTheme()
@@ -58,51 +58,45 @@ export const Header = () => {
     })
   }, [heightProgress])
 
+  console.log(filterValue)
+
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-      <AnimatedHeaderContainer style={styledAnimatedHeader}>
-        <StatusBar style="light" />
+    <AnimatedHeaderContainer style={styledAnimatedHeader}>
+      <StatusBar style="light" />
 
-        <>
-          <TopContainer>
-            <LocationContainer>
-              <MapPin color={COLORS.PURPLE} size={20} weight="fill" />
-              <LocationText>
-                {location?.city}, {location?.state}
-              </LocationText>
-            </LocationContainer>
+      <TopContainer>
+        <LocationContainer>
+          <MapPin color={COLORS.PURPLE} size={20} weight="fill" />
+          <LocationText>
+            {location?.city}, {location?.state}
+          </LocationText>
+        </LocationContainer>
 
-            <CartContainer>
-              <ShoppingCart
-                color={COLORS.YELLOW_DARK}
-                size={20}
-                weight="fill"
-              />
-            </CartContainer>
-          </TopContainer>
+        <CartContainer>
+          <ShoppingCart color={COLORS.YELLOW_DARK} size={20} weight="fill" />
+        </CartContainer>
+      </TopContainer>
 
-          <FilterContainer>
-            <FilterTitle>
-              Encontre o café perfeito para qualquer hora do dia
-            </FilterTitle>
+      <FilterContainer>
+        <FilterTitle>
+          Encontre o café perfeito para qualquer hora do dia
+        </FilterTitle>
 
-            <FilterInputContainer>
-              <MagnifyingGlass color={filterIconColor} />
-              <FilterInput
-                value={filterValue}
-                placeholder={'Buscar café'}
-                returnKeyType={'search'}
-                onChangeText={setFilterValue}
-                onSubmitEditing={handleSearch}
-                onFocus={() => setIsFilterFocused(true)}
-                onBlur={() => setIsFilterFocused(false)}
-              />
-            </FilterInputContainer>
-          </FilterContainer>
+        <FilterInputContainer>
+          <MagnifyingGlass color={filterIconColor} />
+          <FilterInput
+            value={filterValue}
+            placeholder={'Buscar café'}
+            returnKeyType={'search'}
+            onChangeText={setFilterValue}
+            onSubmitEditing={handleSearch}
+            onFocus={() => setIsFilterFocused(true)}
+            onBlur={() => setIsFilterFocused(false)}
+          />
+        </FilterInputContainer>
+      </FilterContainer>
 
-          <BgImage source={CoffeeBgImage} />
-        </>
-      </AnimatedHeaderContainer>
-    </TouchableWithoutFeedback>
+      <BgImage source={CoffeeBgImage} />
+    </AnimatedHeaderContainer>
   )
 }

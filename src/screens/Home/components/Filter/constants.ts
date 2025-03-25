@@ -1,0 +1,1 @@
+export const FILTERS_OPTIONS = ['TRADICIONAIS', 'DOCE', 'ESPECIAIS']

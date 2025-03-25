@@ -47,7 +47,7 @@ export const FilterInputContainer = styled.View`
   align-items: center;
 
   height: 42px;
-  padding: 12px;
+  padding: 4px 12px;
   column-gap: 8px;
   border-radius: 4px;
 
@@ -63,6 +63,8 @@ export const FilterInput = styled.TextInput.attrs(({ theme }) => ({
   `}
 
   flex: 1;
+  padding: 0;
+  height: 100%;
 `
 
 export const BgImage = styled.ImageBackground`
