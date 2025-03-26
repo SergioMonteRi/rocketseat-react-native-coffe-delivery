@@ -1,4 +1,4 @@
-import { SectionList } from 'react-native'
+import { View } from 'react-native'
 
 import { COFFEE_LIST } from '../../constants'
 
@@ -9,23 +9,26 @@ import { CoffeeListContainer, SectionTitle } from './styles'
 import { CoffeeListProps } from './types'
 
 export const CoffeeList = (props: CoffeeListProps) => {
-  const { listHeaderComponent, scrollY } = props
+  const { sectionRefs, setCoffeeListSectionsYpositions } = props
 
   return (
     <CoffeeListContainer>
-      <SectionList
-        sections={COFFEE_LIST}
-        keyExtractor={(item) => item.name}
-        renderItem={({ item }) => <CoffeeItem item={item} />}
-        renderSectionHeader={({ section: { title } }) => (
-          <SectionTitle>{title}</SectionTitle>
-        )}
-        ListHeaderComponent={listHeaderComponent}
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 64 }}
-        stickySectionHeadersEnabled={false}
-        onScroll={(e) => (scrollY.value = e.nativeEvent.contentOffset.y)}
-      />
+      {COFFEE_LIST.map((listItem) => (
+        <View
+          key={listItem.title}
+          ref={(ref) =>
+            ref && (sectionRefs.current[listItem.title.toUpperCase()] = ref)
+          }
+          onLayout={(e) =>
+            setCoffeeListSectionsYpositions(listItem.title.toUpperCase(), e)
+          }
+        >
+          <SectionTitle>{listItem.title}</SectionTitle>
+          {listItem.data.map((coffeeItem) => (
+            <CoffeeItem key={coffeeItem.name} item={coffeeItem} />
+          ))}
+        </View>
+      ))}
     </CoffeeListContainer>
   )
 }

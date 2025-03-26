@@ -1,6 +1,8 @@
 import Animated from 'react-native-reanimated'
 import styled, { css } from 'styled-components/native'
 
+import { HEADER_HEIGHT } from '@screens/Home/constants'
+
 export const AnimatedHeaderContainer = styled(Animated.View)`
   flex-direction: row;
   align-items: center;
@@ -8,6 +10,7 @@ export const AnimatedHeaderContainer = styled(Animated.View)`
   background-color: ${({ theme }) => theme.COLORS.GRAY_100};
 
   padding: 72px 32px 20px 32px;
+  height: ${HEADER_HEIGHT}px;
 `
 
 export const LocationContainer = styled.View`

@@ -5,6 +5,14 @@ import Latte from '@assets/images/coffees/latte.svg'
 import Frozen from '@assets/images/coffees/gelado.svg'
 import Capuccino from '@assets/images/coffees/capuccino.svg'
 import Mochaccino from '@assets/images/coffees/mochaccino.svg'
+import HotChocolate from '@assets/images/coffees/chocolate_quente.svg'
+import Cuban from '@assets/images/coffees/cubano.svg'
+import Hawai from '@assets/images/coffees/havaiano.svg'
+import Arabic from '@assets/images/coffees/arabe.svg'
+import Irish from '@assets/images/coffees/irlandes.svg'
+
+export const HEADER_HEIGHT = 116
+export const FILTER_HEIGHT = 100
 
 export const COFFEE_LIST = [
   {
@@ -57,6 +65,44 @@ export const COFFEE_LIST = [
           'Café expresso com calda de chocolate, pouco leite e espuma',
         price: '9,90',
         image: Mochaccino,
+      },
+      {
+        name: 'Chocolate Quente',
+        description:
+          'Bebida feita com chocolate dissolvido no leite quente e café',
+        price: '9,90',
+        image: HotChocolate,
+      },
+    ],
+  },
+  {
+    title: 'Especiais',
+    data: [
+      {
+        name: 'Cubano',
+        description:
+          'Drink gelado de café expresso com rum, creme de leite e hortelã',
+        price: '9,90',
+        image: Cuban,
+      },
+      {
+        name: 'Havaiano',
+        description: 'Bebida adocicada preparada com café e leite de coco',
+        price: '9,90',
+        image: Hawai,
+      },
+      {
+        name: 'Árabe',
+        description: 'Bebida preparada com grãos de café árabe e especiarias',
+        price: '9,90',
+        image: Arabic,
+      },
+      {
+        name: 'Irlandês',
+        description:
+          'Bebida a base de café, uísque irlandês, açúcar e chantilly',
+        price: '9,90',
+        image: Irish,
       },
     ],
   },

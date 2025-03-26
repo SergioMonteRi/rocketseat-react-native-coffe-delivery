@@ -1,9 +1,12 @@
+import { FILTER_HEIGHT } from '@screens/Home/constants'
 import styled, { css } from 'styled-components/native'
 
-export const FilterContainer = styled.View`
+export const FilterContainer = styled.View<{ isFixed?: boolean }>`
   row-gap: 12px;
+  height: ${FILTER_HEIGHT}px;
   padding: 16px 32px;
-  background-color: ${({ theme }) => theme.COLORS.GRAY_900};
+  background-color: ${({ theme, isFixed }) =>
+    isFixed ? theme.COLORS.WHITE : theme.COLORS.GRAY_900};
 `
 
 export const Title = styled.Text`

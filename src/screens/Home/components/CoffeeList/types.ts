@@ -1,6 +1,11 @@
-import { SharedValue } from 'react-native-reanimated'
+import { LayoutChangeEvent, View } from 'react-native'
 
 export type CoffeeListProps = {
-  scrollY: SharedValue<number>
-  listHeaderComponent: React.MemoExoticComponent<() => React.JSX.Element>
+  sectionRefs: React.MutableRefObject<{
+    [key: string]: View
+  }>
+  setCoffeeListSectionsYpositions: (
+    sectionName: string,
+    event: LayoutChangeEvent,
+  ) => void
 }

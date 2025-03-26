@@ -1,6 +1,10 @@
 import { useTheme } from 'styled-components/native'
 import { MapPin, ShoppingCart } from 'phosphor-react-native'
-import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated'
+import {
+  interpolate,
+  interpolateColor,
+  useAnimatedStyle,
+} from 'react-native-reanimated'
 
 import { useLocation } from '@hooks/useLocation'
 
@@ -26,6 +30,12 @@ export const Header = (props: HeaderProps) => {
         [10, filterPositionY],
         [COLORS.GRAY_100, COLORS.WHITE],
       ),
+      borderBottomWidth: interpolate(
+        scrollY.value,
+        [50, filterPositionY],
+        [0, 0.5],
+      ),
+      borderBottomColor: COLORS.GRAY_700,
     }
   })
 

@@ -12,7 +12,9 @@ import {
 
 import { FilterProps } from './types'
 
-export const Filter = ({ setFilterPositionY }: FilterProps) => {
+export const Filter = (props: FilterProps) => {
+  const { isFixed, setFilterPositionY, handleFilterPress } = props
+
   const handleLayout = (event: LayoutChangeEvent) => {
     if (!setFilterPositionY) return
 
@@ -22,12 +24,15 @@ export const Filter = ({ setFilterPositionY }: FilterProps) => {
   }
 
   return (
-    <FilterContainer onLayout={handleLayout}>
+    <FilterContainer isFixed={isFixed} onLayout={handleLayout}>
       <Title>Nossos cafés</Title>
 
       <FilterOptionsContainer>
         {FILTERS_OPTIONS.map((option) => (
-          <TagContainer key={option}>
+          <TagContainer
+            key={option}
+            onPress={() => handleFilterPress(option.toUpperCase())}
+          >
             <Tag>{option}</Tag>
           </TagContainer>
         ))}
