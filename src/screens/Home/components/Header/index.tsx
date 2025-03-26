@@ -1,102 +1,56 @@
-import { useEffect, useState } from 'react'
-import { StatusBar } from 'expo-status-bar'
-import { useLocation } from '@hooks/useLocation'
 import { useTheme } from 'styled-components/native'
-import { Keyboard } from 'react-native'
-import { MapPin, ShoppingCart, MagnifyingGlass } from 'phosphor-react-native'
-import {
-  Easing,
-  withTiming,
-  useSharedValue,
-  useAnimatedStyle,
-} from 'react-native-reanimated'
+import { MapPin, ShoppingCart } from 'phosphor-react-native'
+import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated'
+
+import { useLocation } from '@hooks/useLocation'
 
 import {
-  BgImage,
-  FilterTitle,
-  FilterInput,
-  TopContainer,
-  LocationText,
   CartContainer,
-  FilterContainer,
   LocationContainer,
-  FilterInputContainer,
+  AnimatedLocationText,
   AnimatedHeaderContainer,
 } from './styles'
 
-import CoffeeBgImage from '@assets/images/backgrounds/coffee-bg.png'
+import { HeaderProps } from './types'
 
-export const Header = () => {
+export const Header = (props: HeaderProps) => {
+  const { filterPositionY, scrollY } = props
+
   const { COLORS } = useTheme()
   const { location } = useLocation()
 
-  const [isFilterFocused, setIsFilterFocused] = useState(false)
-  const [filterValue, setFilterValue] = useState('')
-
-  const heightProgress = useSharedValue(220)
-
-  const styledAnimatedHeader = useAnimatedStyle(() => {
+  const fixedHeaderAnimatedStyle = useAnimatedStyle(() => {
     return {
-      height: heightProgress.value,
+      backgroundColor: interpolateColor(
+        scrollY.value,
+        [10, filterPositionY],
+        [COLORS.GRAY_100, COLORS.WHITE],
+      ),
     }
   })
 
-  const filterIconColor = isFilterFocused
-    ? COLORS.YELLOW
-    : filterValue.length > 0
-      ? COLORS.YELLOW_DARK
-      : COLORS.GRAY_400
-
-  const handleSearch = () => {
-    Keyboard.dismiss()
-  }
-
-  useEffect(() => {
-    heightProgress.value = withTiming(380, {
-      duration: 800,
-      easing: Easing.out(Easing.exp),
-    })
-  }, [heightProgress])
-
-  console.log(filterValue)
+  const locationTextAnimatedStyle = useAnimatedStyle(() => {
+    return {
+      color: interpolateColor(
+        scrollY.value,
+        [10, filterPositionY],
+        [COLORS.GRAY_900, COLORS.GRAY_100],
+      ),
+    }
+  })
 
   return (
-    <AnimatedHeaderContainer style={styledAnimatedHeader}>
-      <StatusBar style="light" />
+    <AnimatedHeaderContainer style={fixedHeaderAnimatedStyle}>
+      <LocationContainer>
+        <MapPin color={COLORS.PURPLE} size={20} weight="fill" />
+        <AnimatedLocationText style={locationTextAnimatedStyle}>
+          {location?.city}, {location?.state}
+        </AnimatedLocationText>
+      </LocationContainer>
 
-      <TopContainer>
-        <LocationContainer>
-          <MapPin color={COLORS.PURPLE} size={20} weight="fill" />
-          <LocationText>
-            {location?.city}, {location?.state}
-          </LocationText>
-        </LocationContainer>
-
-        <CartContainer>
-          <ShoppingCart color={COLORS.YELLOW_DARK} size={20} weight="fill" />
-        </CartContainer>
-      </TopContainer>
-
-      <FilterContainer>
-        <FilterTitle>
-          Encontre o café perfeito para qualquer hora do dia
-        </FilterTitle>
-
-        <FilterInputContainer>
-          <MagnifyingGlass color={filterIconColor} />
-          <FilterInput
-            value={filterValue}
-            placeholder={'Buscar café'}
-            returnKeyType={'search'}
-            onChangeText={setFilterValue}
-            onSubmitEditing={handleSearch}
-            onFocus={() => setIsFilterFocused(true)}
-            onBlur={() => setIsFilterFocused(false)}
-          />
-        </FilterInputContainer>
-      </FilterContainer>
-
-      <BgImage source={CoffeeBgImage} />
+      <CartContainer>
+        <ShoppingCart color={COLORS.YELLOW_DARK} size={20} weight="fill" />
+      </CartContainer>
     </AnimatedHeaderContainer>
   )
 }

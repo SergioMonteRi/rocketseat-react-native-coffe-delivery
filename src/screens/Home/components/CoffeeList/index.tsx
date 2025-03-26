@@ -1,6 +1,6 @@
 import { SectionList } from 'react-native'
 
-import { COFFEE_LIST } from './constants'
+import { COFFEE_LIST } from '../../constants'
 
 import { CoffeeItem } from './components/CoffeeItem'
 
@@ -8,7 +8,9 @@ import { CoffeeListContainer, SectionTitle } from './styles'
 
 import { CoffeeListProps } from './types'
 
-export const CoffeeList = ({ listHeaderComponent }: CoffeeListProps) => {
+export const CoffeeList = (props: CoffeeListProps) => {
+  const { listHeaderComponent, scrollY } = props
+
   return (
     <CoffeeListContainer>
       <SectionList
@@ -22,6 +24,7 @@ export const CoffeeList = ({ listHeaderComponent }: CoffeeListProps) => {
         showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 64 }}
         stickySectionHeadersEnabled={false}
+        onScroll={(e) => (scrollY.value = e.nativeEvent.contentOffset.y)}
       />
     </CoffeeListContainer>
   )

@@ -3,6 +3,7 @@ import styled, { css } from 'styled-components/native'
 export const FilterContainer = styled.View`
   row-gap: 12px;
   padding: 16px 32px;
+  background-color: ${({ theme }) => theme.COLORS.GRAY_900};
 `
 
 export const Title = styled.Text`
