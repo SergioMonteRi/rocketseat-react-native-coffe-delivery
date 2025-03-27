@@ -1,7 +1,7 @@
 import { SharedValue } from 'react-native-reanimated'
 
-export type FilterProps = {
-  isFixed?: boolean
+export type FilterTagProps = {
+  option: string
   scrollY: SharedValue<number>
   sectionsPositionsY: {
     [key: string]: {
@@ -9,6 +9,5 @@ export type FilterProps = {
       height: number
     }
   }
-  handleFilterPress: (value: string) => void
-  setFilterPositionY?: React.Dispatch<React.SetStateAction<number>>
+  onPress: (option: string) => void
 }

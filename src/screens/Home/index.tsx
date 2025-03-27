@@ -1,6 +1,6 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTheme } from 'styled-components/native'
-import { LayoutChangeEvent, StatusBar, View } from 'react-native'
+import { LayoutChangeEvent, StatusBar } from 'react-native'
 import Animated, {
   Easing,
   runOnJS,
@@ -27,10 +27,9 @@ export const Home = () => {
   const { COLORS } = useTheme()
 
   const scrollViewRef = useAnimatedRef<Animated.ScrollView>()
-  const sectionRefs = useRef<{ [key: string]: View }>({})
 
   const [sectionsPositionsY, setSectionsPositionsY] = useState<{
-    [key: string]: number
+    [key: string]: { y: number; height: number }
   }>({})
 
   const [filterPositionY, setFilterPositionY] = useState(0)
@@ -84,16 +83,22 @@ export const Home = () => {
     sectionName: string,
     event: LayoutChangeEvent,
   ) => {
+    'worklet'
+    const { height } = event.nativeEvent.layout
+
     event.target.measureInWindow((x, y) => {
       setSectionsPositionsY((prev) => ({
         ...prev,
-        [sectionName]: y,
+        [sectionName]: {
+          y,
+          height,
+        },
       }))
     })
   }
 
   const handleFilterPress = (filterName: string) => {
-    const sectionY = sectionsPositionsY[filterName]
+    const sectionY = sectionsPositionsY[filterName].y
 
     if (typeof sectionY === 'number') {
       const targetYposition = Math.max(
@@ -114,7 +119,7 @@ export const Home = () => {
 
   useDerivedValue(() => {
     scrollTo(scrollViewRef, 0, targetY.value, false)
-  })
+  }, [targetY])
 
   return (
     <>
@@ -128,7 +133,12 @@ export const Home = () => {
       <Header scrollY={scrollY} filterPositionY={filterPositionY} />
 
       <AnimatedFilterWrapper style={fixedFilterAnimatedStyle}>
-        <Filter handleFilterPress={handleFilterPress} isFixed />
+        <Filter
+          scrollY={scrollY}
+          sectionsPositionsY={sectionsPositionsY}
+          handleFilterPress={handleFilterPress}
+          isFixed
+        />
       </AnimatedFilterWrapper>
 
       <AnimatedHomeContainer
@@ -143,12 +153,13 @@ export const Home = () => {
         <CoffeeCarousel scrollY={scrollY} filterPositionY={filterPositionY} />
 
         <Filter
+          scrollY={scrollY}
+          sectionsPositionsY={sectionsPositionsY}
           setFilterPositionY={setFilterPositionY}
           handleFilterPress={handleFilterPress}
         />
 
         <CoffeeList
-          sectionRefs={sectionRefs}
           setCoffeeListSectionsYpositions={setCoffeeListSectionsYpositions}
         />
       </AnimatedHomeContainer>

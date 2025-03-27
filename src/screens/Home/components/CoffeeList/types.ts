@@ -1,7 +1,7 @@
 import { LayoutChangeEvent, View } from 'react-native'
 
 export type CoffeeListProps = {
-  sectionRefs: React.MutableRefObject<{
+  sectionRefs?: React.MutableRefObject<{
     [key: string]: View
   }>
   setCoffeeListSectionsYpositions: (

@@ -1,5 +1,6 @@
-import { FILTER_HEIGHT } from '@screens/Home/constants'
 import styled, { css } from 'styled-components/native'
+
+import { FILTER_HEIGHT } from '@screens/Home/constants'
 
 export const FilterContainer = styled.View<{ isFixed?: boolean }>`
   row-gap: 12px;
@@ -20,18 +21,4 @@ export const Title = styled.Text`
 export const FilterOptionsContainer = styled.View`
   flex-direction: row;
   column-gap: 8px;
-`
-
-export const TagContainer = styled.TouchableOpacity`
-  padding: 6px 12px;
-  border-radius: 100px;
-  border: 1px solid ${({ theme }) => theme.COLORS.PURPLE_DARK};
-`
-
-export const Tag = styled.Text`
-  ${({ theme }) => css`
-    color: ${theme.COLORS.PURPLE_DARK};
-    font-size: ${theme.FONT_SIZE.TAG}px;
-    font-family: ${theme.FONT_FAMILY.ROBOTO.ROBOTO_BOLD};
-  `}
 `

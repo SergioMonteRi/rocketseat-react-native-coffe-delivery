@@ -1,4 +1,4 @@
-import { View } from 'react-native'
+import { LayoutChangeEvent, View } from 'react-native'
 
 import { COFFEE_LIST } from '../../constants'
 
@@ -9,19 +9,18 @@ import { CoffeeListContainer, SectionTitle } from './styles'
 import { CoffeeListProps } from './types'
 
 export const CoffeeList = (props: CoffeeListProps) => {
-  const { sectionRefs, setCoffeeListSectionsYpositions } = props
+  const { setCoffeeListSectionsYpositions } = props
+
+  const handleSectionLayout = (title: string, event: LayoutChangeEvent) => {
+    setCoffeeListSectionsYpositions(title.toUpperCase(), event)
+  }
 
   return (
     <CoffeeListContainer>
       {COFFEE_LIST.map((listItem) => (
         <View
           key={listItem.title}
-          ref={(ref) =>
-            ref && (sectionRefs.current[listItem.title.toUpperCase()] = ref)
-          }
-          onLayout={(e) =>
-            setCoffeeListSectionsYpositions(listItem.title.toUpperCase(), e)
-          }
+          onLayout={(e) => handleSectionLayout(listItem.title, e)}
         >
           <SectionTitle>{listItem.title}</SectionTitle>
           {listItem.data.map((coffeeItem) => (
