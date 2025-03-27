@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native'
 import {
   withTiming,
   interpolate,
@@ -17,10 +18,15 @@ import {
   ITEM_SIZE,
 } from './styles'
 
+import { AppNavigationRoutesProps } from '@routes/AppRoutes/types'
+
 import { CoffeCardProps } from './types'
+import { TouchableOpacity } from 'react-native'
 
 export const CoffeeCard = (props: CoffeCardProps) => {
   const { item, scrollX, index } = props
+
+  const navigator = useNavigation<AppNavigationRoutesProps>()
 
   const inputRange = [
     (index - 1) * ITEM_SIZE,
@@ -45,24 +51,32 @@ export const CoffeeCard = (props: CoffeCardProps) => {
     }
   })
 
+  const handleProductNavigation = () => {
+    navigator.navigate('product', {
+      itemDetails: { ...item },
+    })
+  }
+
   return (
     <AnimatedCardContainer style={styledAnimatedCard}>
-      <ContentContainer>
-        <AnimatedImageContainer style={styledAnimatedImage}>
-          <item.image height={'100%'} width={'100%'} />
-        </AnimatedImageContainer>
+      <TouchableOpacity onPress={handleProductNavigation} activeOpacity={0.85}>
+        <ContentContainer>
+          <AnimatedImageContainer style={styledAnimatedImage}>
+            <item.image height={'100%'} width={'100%'} />
+          </AnimatedImageContainer>
 
-        <Tag>{item.tag}</Tag>
+          <Tag>{item.tag}</Tag>
 
-        <Title>{item.title}</Title>
+          <Title>{item.title}</Title>
 
-        <Description>{item.description}</Description>
+          <Description>{item.description}</Description>
 
-        <PriceContainer>
-          <Currency>R$</Currency>
-          <Price>{item.price}</Price>
-        </PriceContainer>
-      </ContentContainer>
+          <PriceContainer>
+            <Currency>R$</Currency>
+            <Price>{item.price}</Price>
+          </PriceContainer>
+        </ContentContainer>
+      </TouchableOpacity>
     </AnimatedCardContainer>
   )
 }

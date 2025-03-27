@@ -1,3 +1,4 @@
+import Animated from 'react-native-reanimated'
 import styled, { css } from 'styled-components/native'
 
 export const ContentContainer = styled.View`
@@ -62,9 +63,10 @@ export const Description = styled.Text`
   `}
 
   padding-right: 12px;
+  margin-top: 6px;
 `
 
-export const ImageContainer = styled.View`
+export const AnimatedImageContainer = styled(Animated.View)`
   position: absolute;
   align-items: center;
 

@@ -2,9 +2,9 @@ import LatteSvg from '@assets/images/coffees/latte.svg'
 import IrishSvg from '@assets/images/coffees/irlandes.svg'
 import MochaccinoSvg from '@assets/images/coffees/mochaccino.svg'
 
-import { CarouselCoffeeItem } from './type'
+import { CatalogueItem } from '@utils/types/types'
 
-export const COFFEE_CAROUSEL_DATA: CarouselCoffeeItem[] = [
+export const COFFEE_CAROUSEL_DATA: CatalogueItem[] = [
   {
     id: 1,
     title: 'Latte',

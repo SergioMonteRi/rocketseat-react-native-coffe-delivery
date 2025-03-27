@@ -1,3 +1,4 @@
+import { Easing, FadeInRight } from 'react-native-reanimated'
 import { AnimatedSmoke } from './components/AnimatedSmoke'
 
 import {
@@ -8,8 +9,8 @@ import {
   StyledImage,
   Description,
   PriceContainer,
-  ImageContainer,
   ContentContainer,
+  AnimatedImageContainer,
   TitleAndPriceContainer,
 } from './styles'
 
@@ -36,10 +37,15 @@ export const Content = (props: ContentProps) => {
 
       <Description>{description}</Description>
 
-      <ImageContainer>
+      <AnimatedImageContainer
+        entering={FadeInRight.duration(600)
+          .delay(100)
+          .easing(Easing.ease)
+          .mass(0.5)}
+      >
         <AnimatedSmoke />
         <StyledImage source={CoffeeImg} />
-      </ImageContainer>
+      </AnimatedImageContainer>
     </ContentContainer>
   )
 }
