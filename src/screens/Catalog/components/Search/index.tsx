@@ -1,19 +1,21 @@
-import { MagnifyingGlass } from 'phosphor-react-native'
-import {
-  BgImage,
-  ContentContainer,
-  InputContainer,
-  InputText,
-  AnimatedSearchContainer,
-  Title,
-} from './styles'
 import { useState } from 'react'
+import { Keyboard } from 'react-native'
 import { useTheme } from 'styled-components/native'
+import { MagnifyingGlass } from 'phosphor-react-native'
+import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated'
+
+import {
+  Title,
+  BgImage,
+  InputText,
+  InputContainer,
+  ContentContainer,
+  AnimatedSearchContainer,
+} from './styles'
+
+import { SearchProps } from './types'
 
 import CoffeeBgImage from '@assets/images/backgrounds/coffee-bg.png'
-import { Keyboard } from 'react-native'
-import { SearchProps } from './types'
-import { interpolateColor, useAnimatedStyle } from 'react-native-reanimated'
 
 export const Search = (props: SearchProps) => {
   const { filterPositionY, scrollY } = props

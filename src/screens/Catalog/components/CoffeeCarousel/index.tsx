@@ -7,7 +7,7 @@ import {
 
 import { COFFEE_CAROUSEL_DATA } from './constants'
 
-import { enteringAnimation } from '@screens/Home/animations'
+import { enteringAnimation } from '@screens/Catalog/animations'
 
 import { CoffeeCard } from './components/CoffeeCard'
 

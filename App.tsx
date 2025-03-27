@@ -11,7 +11,7 @@ import {
 
 import theme from '@theme/theme'
 
-import { Home } from '@screens/Home'
+import { Catalog } from '@screens/Catalog'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +28,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
 
-      <Home />
+      <Catalog />
     </ThemeProvider>
   )
 }

@@ -12,7 +12,7 @@ import {
   CoffeeItemContainer,
 } from './styles'
 
-import { slideDownToUpAnimation } from '@screens/Home/animations'
+import { slideDownToUpAnimation } from '@screens/Catalog/animations'
 
 export const CoffeeItem = ({ item }: CoffeeItemProps) => {
   const { image: ItemImage, name, description, price } = item

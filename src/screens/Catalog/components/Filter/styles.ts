@@ -1,6 +1,6 @@
 import styled, { css } from 'styled-components/native'
 
-import { FILTER_HEIGHT } from '@screens/Home/constants'
+import { FILTER_HEIGHT } from '@screens/Catalog/constants'
 
 export const FilterContainer = styled.View<{ isFixed?: boolean }>`
   row-gap: 12px;

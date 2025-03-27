@@ -1,7 +1,7 @@
 import Animated from 'react-native-reanimated'
 import styled, { css } from 'styled-components/native'
 
-import { HEADER_HEIGHT } from '@screens/Home/constants'
+import { HEADER_HEIGHT } from '@screens/Catalog/constants'
 
 export const AnimatedHeaderContainer = styled(Animated.View)`
   flex-direction: row;

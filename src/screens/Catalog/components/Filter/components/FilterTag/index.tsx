@@ -5,7 +5,7 @@ import {
   useDerivedValue,
 } from 'react-native-reanimated'
 
-import { FILTER_HEIGHT, HEADER_HEIGHT } from '@screens/Home/constants'
+import { FILTER_HEIGHT, HEADER_HEIGHT } from '@screens/Catalog/constants'
 
 import { AnimatedFilterTagContainer, AnimatedTag } from './styles'
 
@@ -21,7 +21,13 @@ export const FilterTag = (props: FilterTagProps) => {
 
     const sectionPosition = sectionsPositionsY[option].y
     const sectionPositionY = sectionPosition - HEADER_HEIGHT - FILTER_HEIGHT
-    const distance = Math.abs(scrollY.value - sectionPositionY)
+
+    const shouldStartInterpolation = scrollY.value > 10
+
+    const distance = shouldStartInterpolation
+      ? Math.abs(scrollY.value - sectionPositionY)
+      : sectionsPositionsY[option].height
+
     const sectionHeight = sectionsPositionsY[option].height
 
     return { distance, sectionHeight }

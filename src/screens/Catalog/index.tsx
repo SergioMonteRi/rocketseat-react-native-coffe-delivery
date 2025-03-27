@@ -23,7 +23,7 @@ import { FILTER_HEIGHT, HEADER_HEIGHT } from './constants'
 
 import { AnimatedFilterWrapper, AnimatedHomeContainer } from './styles'
 
-export const Home = () => {
+export const Catalog = () => {
   const { COLORS } = useTheme()
 
   const scrollViewRef = useAnimatedRef<Animated.ScrollView>()
@@ -105,6 +105,8 @@ export const Home = () => {
         0,
         sectionY - HEADER_HEIGHT - FILTER_HEIGHT + 2,
       )
+
+      targetY.value = scrollY.value
 
       targetY.value = withTiming(targetYposition, {
         duration: 900,
