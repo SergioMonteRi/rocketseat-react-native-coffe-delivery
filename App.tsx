@@ -11,7 +11,8 @@ import {
 
 import theme from '@theme/theme'
 
-import { Catalog } from '@screens/Catalog'
+// import { Catalog } from '@screens/Catalog'
+import { Product } from '@screens/Product'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -28,7 +29,8 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <StatusBar style="auto" />
 
-      <Catalog />
+      {/* <Catalog /> */}
+      <Product />
     </ThemeProvider>
   )
 }
