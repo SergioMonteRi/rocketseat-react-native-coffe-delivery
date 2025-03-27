@@ -23,9 +23,22 @@ export const Footer = () => {
   const { COLORS } = useTheme()
 
   const [selectedSize, setSelectedSize] = useState<number>()
+  const [quantity, setQuantity] = useState(1)
 
   const handleSizePress = (size: number) => {
     setSelectedSize(size)
+  }
+
+  const handleAddQuantity = () => {
+    setQuantity((prev) => prev + 1)
+  }
+
+  const handleDecreaseQuantity = () => {
+    setQuantity((prev) => Math.max(prev - 1, 1))
+  }
+
+  const handleAddProduct = () => {
+    console.log(quantity, selectedSize)
   }
 
   return (
@@ -47,18 +60,18 @@ export const Footer = () => {
 
       <AddToCartContainer>
         <AddToCardQuantitySelectorContainer>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleDecreaseQuantity}>
             <Minus size={20} color={COLORS.PURPLE} weight="bold" />
           </TouchableOpacity>
 
-          <AddToCartQuantityText>1</AddToCartQuantityText>
+          <AddToCartQuantityText>{quantity}</AddToCartQuantityText>
 
-          <TouchableOpacity>
+          <TouchableOpacity onPress={handleAddQuantity}>
             <Plus size={20} color={COLORS.PURPLE} weight="bold" />
           </TouchableOpacity>
         </AddToCardQuantitySelectorContainer>
 
-        <AddToCartButton>
+        <AddToCartButton disabled={!selectedSize} onPress={handleAddProduct}>
           <AddToCartButtonText>ADICIONAR</AddToCartButtonText>
         </AddToCartButton>
       </AddToCartContainer>

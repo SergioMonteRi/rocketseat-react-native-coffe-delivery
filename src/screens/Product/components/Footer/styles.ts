@@ -55,6 +55,8 @@ export const AddToCartButton = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
 
+  opacity: ${({ disabled }) => (disabled ? 0.6 : 1)};
+
   background-color: ${({ theme }) => theme.COLORS.PURPLE_DARK};
 `
 
