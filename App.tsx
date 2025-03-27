@@ -3,16 +3,16 @@
 import { StatusBar } from 'expo-status-bar'
 import { ThemeProvider } from 'styled-components/native'
 import { Baloo2_700Bold } from '@expo-google-fonts/baloo-2'
+import { GestureHandlerRootView } from 'react-native-gesture-handler'
 import {
   useFonts,
   Roboto_400Regular,
   Roboto_700Bold,
 } from '@expo-google-fonts/roboto'
 
-import theme from '@theme/theme'
+import { Routes } from '@routes/index'
 
-// import { Catalog } from '@screens/Catalog'
-import { Product } from '@screens/Product'
+import theme from '@theme/theme'
 
 export default function App() {
   const [fontsLoaded] = useFonts({
@@ -26,11 +26,12 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar style="auto" />
+    <GestureHandlerRootView style={{ flex: 1 }}>
+      <ThemeProvider theme={theme}>
+        <StatusBar style="auto" />
 
-      {/* <Catalog /> */}
-      <Product />
-    </ThemeProvider>
+        <Routes />
+      </ThemeProvider>
+    </GestureHandlerRootView>
   )
 }

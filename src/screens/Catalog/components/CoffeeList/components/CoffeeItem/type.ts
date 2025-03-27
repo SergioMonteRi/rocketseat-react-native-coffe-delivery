@@ -1,10 +1,5 @@
-import { SvgProps } from 'react-native-svg'
+import { CatalogueItem } from '@utils/types/types'
 
 export type CoffeeItemProps = {
-  item: {
-    name: string
-    price: string
-    description: string
-    image: React.FC<SvgProps>
-  }
+  item: CatalogueItem
 }

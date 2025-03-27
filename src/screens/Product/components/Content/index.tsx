@@ -13,25 +13,28 @@ import {
   TitleAndPriceContainer,
 } from './styles'
 
+import { ContentProps } from './types'
+
 import CoffeeImg from '@assets/images/coffees/coffee.png'
 
-export const Content = () => {
+export const Content = (props: ContentProps) => {
+  const { itemDetails } = props
+  const { tag, title, price, description } = itemDetails
+
   return (
     <ContentContainer>
-      <Tag>ESPECIAL</Tag>
+      <Tag>{tag}</Tag>
 
       <TitleAndPriceContainer>
-        <Title>Irlandês</Title>
+        <Title>{title}</Title>
 
         <PriceContainer>
           <Currency>R$</Currency>
-          <Price>9,90</Price>
+          <Price>{price}</Price>
         </PriceContainer>
       </TitleAndPriceContainer>
 
-      <Description>
-        Bebida a base de café, uísque irlandês, açúcar e chantilly
-      </Description>
+      <Description>{description}</Description>
 
       <ImageContainer>
         <AnimatedSmoke />

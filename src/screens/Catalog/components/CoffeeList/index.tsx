@@ -24,7 +24,7 @@ export const CoffeeList = (props: CoffeeListProps) => {
         >
           <SectionTitle>{listItem.title}</SectionTitle>
           {listItem.data.map((coffeeItem) => (
-            <CoffeeItem key={coffeeItem.name} item={coffeeItem} />
+            <CoffeeItem key={coffeeItem.id} item={coffeeItem} />
           ))}
         </View>
       ))}

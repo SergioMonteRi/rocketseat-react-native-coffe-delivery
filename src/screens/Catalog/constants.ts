@@ -11,39 +11,51 @@ import Hawai from '@assets/images/coffees/havaiano.svg'
 import Arabic from '@assets/images/coffees/arabe.svg'
 import Irish from '@assets/images/coffees/irlandes.svg'
 
+import { CatalogueList } from '@utils/types/types'
+
 export const HEADER_HEIGHT = 116
 export const FILTER_HEIGHT = 100
 
-export const COFFEE_LIST = [
+export const COFFEE_LIST: CatalogueList = [
   {
     title: 'Tradicionais',
     data: [
       {
-        name: 'Expresso Tradicional',
+        id: 1,
+        tag: 'TRADICIONAL',
+        title: 'Expresso Tradicional',
         description: 'O tradicional café feito com água quente e grãos moídos',
         price: '9,90',
         image: Traditional,
       },
       {
-        name: 'Expresso Americano',
+        id: 2,
+        tag: 'TRADICIONAL',
+        title: 'Expresso Americano',
         description: 'Expresso diluído, menos intenso que o tradicional',
         price: '9,90',
         image: American,
       },
       {
-        name: 'Expresso Cremoso',
+        id: 3,
+        tag: 'TRADICIONAL',
+        title: 'Expresso Cremoso',
         description: 'Café expresso tradicional com espuma cremosa',
         price: '9,90',
         image: Smooth,
       },
       {
-        name: 'Latte',
+        id: 4,
+        tag: 'TRADICIONAL',
+        title: 'Latte',
         description: 'Café expresso com o dobro de leite e espuma cremosa',
         price: '9,90',
         image: Latte,
       },
       {
-        name: 'Expresso Gelado',
+        id: 5,
+        tag: 'TRADICIONAL',
+        title: 'Expresso Gelado',
         description: 'Bebida preparada com café expresso e cubos de gelo',
         price: '9,90',
         image: Frozen,
@@ -54,20 +66,26 @@ export const COFFEE_LIST = [
     title: 'Doces',
     data: [
       {
-        name: 'Capuccino',
+        id: 6,
+        tag: 'DOCE',
+        title: 'Capuccino',
         description: 'Bebida com canela feita de doses de café, leite e espuma',
         price: '9,90',
         image: Capuccino,
       },
       {
-        name: 'Mocaccino',
+        id: 7,
+        tag: 'DOCE',
+        title: 'Mocaccino',
         description:
           'Café expresso com calda de chocolate, pouco leite e espuma',
         price: '9,90',
         image: Mochaccino,
       },
       {
-        name: 'Chocolate Quente',
+        id: 8,
+        tag: 'DOCE',
+        title: 'Chocolate Quente',
         description:
           'Bebida feita com chocolate dissolvido no leite quente e café',
         price: '9,90',
@@ -79,26 +97,34 @@ export const COFFEE_LIST = [
     title: 'Especiais',
     data: [
       {
-        name: 'Cubano',
+        id: 9,
+        tag: 'ESPECIAL',
+        title: 'Cubano',
         description:
           'Drink gelado de café expresso com rum, creme de leite e hortelã',
         price: '9,90',
         image: Cuban,
       },
       {
-        name: 'Havaiano',
+        id: 10,
+        tag: 'ESPECIAL',
+        title: 'Havaiano',
         description: 'Bebida adocicada preparada com café e leite de coco',
         price: '9,90',
         image: Hawai,
       },
       {
-        name: 'Árabe',
+        id: 11,
+        tag: 'ESPECIAL',
+        title: 'Árabe',
         description: 'Bebida preparada com grãos de café árabe e especiarias',
         price: '9,90',
         image: Arabic,
       },
       {
-        name: 'Irlandês',
+        id: 12,
+        tag: 'ESPECIAL',
+        title: 'Irlandês',
         description:
           'Bebida a base de café, uísque irlandês, açúcar e chantilly',
         price: '9,90',
