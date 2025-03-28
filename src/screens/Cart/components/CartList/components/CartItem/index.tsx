@@ -18,6 +18,7 @@ import {
 } from './styles'
 
 import { CartItemProps } from './types'
+import { useCart } from '@hooks/useCart'
 
 export const CartItem = (props: CartItemProps) => {
   const { cartItem } = props
@@ -28,15 +29,24 @@ export const CartItem = (props: CartItemProps) => {
   } = cartItem
 
   const { COLORS } = useTheme()
+  const { handleUpdateItemQuantityToCart } = useCart()
 
   const [localQuantity, setLocalQuantity] = useState(quantity)
 
   const handleIncrease = () => {
     setLocalQuantity((prev) => prev + 1)
+
+    const newQuantity = localQuantity + 1
+
+    handleUpdateItemQuantityToCart(size, cartItem.item, newQuantity)
   }
 
   const handleDecrease = () => {
     setLocalQuantity((prev) => Math.max(1, prev - 1))
+
+    const newQuantity = localQuantity - 1
+
+    handleUpdateItemQuantityToCart(size, cartItem.item, newQuantity)
   }
 
   return (

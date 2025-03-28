@@ -68,6 +68,24 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     [],
   )
 
+  const handleUpdateItemQuantityToCart = useCallback(
+    (size: number, item: CatalogueItem, newQuantity: number) => {
+      setCartItems((prev) => {
+        const updatedItems = prev.map((cartItem) => {
+          if (cartItem.item.id === item.id && cartItem.size === size) {
+            return {
+              ...cartItem,
+              quantity: newQuantity,
+            }
+          }
+          return cartItem
+        })
+        return updatedItems
+      })
+    },
+    [],
+  )
+
   useEffect(() => {
     const totalQuantity = cartItems.reduce(
       (total, item) => total + item.quantity,
@@ -83,6 +101,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cartItems,
         cartQuantity,
         handleAddToCart,
+        handleUpdateItemQuantityToCart,
       }}
     >
       {children}
