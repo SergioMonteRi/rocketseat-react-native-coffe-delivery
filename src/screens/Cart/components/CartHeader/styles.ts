@@ -6,6 +6,9 @@ export const CartHeaderContainer = styled.View`
   justify-content: center;
 
   padding: 72px 32px 20px 32px;
+
+  border-bottom-width: 1px;
+  border-bottom-color: ${({ theme }) => theme.COLORS.GRAY_600};
 `
 
 export const BackIconContainer = styled.TouchableOpacity`
