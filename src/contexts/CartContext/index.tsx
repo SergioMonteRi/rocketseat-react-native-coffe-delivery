@@ -4,6 +4,9 @@ import { CatalogueItem } from '@utils/types/types'
 
 import { CartContextDataProps, CartContextProviderProps } from './types'
 
+import Irish from '@assets/images/coffees/irlandes.svg'
+import Traditional from '@assets/images/coffees/tradicional.svg'
+
 export const CartContext = createContext<CartContextDataProps>(
   {} as CartContextDataProps,
 )
@@ -11,7 +14,33 @@ export const CartContext = createContext<CartContextDataProps>(
 export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   const [cartItems, setCartItems] = useState<
     { item: CatalogueItem; quantity: number; size: number }[]
-  >([])
+  >([
+    {
+      item: {
+        id: 1,
+        tag: 'TRADICIONAL',
+        title: 'Expresso Tradicional',
+        description: 'O tradicional café feito com água quente e grãos moídos',
+        price: '9,90',
+        image: Traditional,
+      },
+      quantity: 2,
+      size: 140,
+    },
+    {
+      item: {
+        id: 12,
+        tag: 'ESPECIAL',
+        title: 'Irlandês',
+        description:
+          'Bebida a base de café, uísque irlandês, açúcar e chantilly',
+        price: '9,90',
+        image: Irish,
+      },
+      quantity: 1,
+      size: 114,
+    },
+  ])
 
   const [cartQuantity, setCartQuantity] = useState<number>(0)
 

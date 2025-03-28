@@ -15,9 +15,9 @@ export const AppRoutes = () => {
         headerShown: false,
       }}
     >
+      <Screen name="cart" component={Cart} />
       <Screen name="catalog" component={Catalog} />
       <Screen name="product" component={Product} />
-      <Screen name="cart" component={Cart} />
     </Navigator>
   )
 }
