@@ -7,6 +7,7 @@ export type AppRoutesProps = {
   product: {
     itemDetails: CatalogueItem
   }
+  cart: undefined
 }
 
 export type AppNavigationRoutesProps = NativeStackNavigationProp<AppRoutesProps>

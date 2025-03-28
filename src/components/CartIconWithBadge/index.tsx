@@ -10,15 +10,22 @@ import {
 } from './styles'
 
 import { CartIconWithBadgeProps } from './types'
+import { useNavigation } from '@react-navigation/native'
+import { AppNavigationRoutesProps } from '@routes/AppRoutes/types'
 
 export const CartIconWithBadge = (props: CartIconWithBadgeProps) => {
   const { bgColor = 'PURPLE' } = props
 
   const { COLORS } = useTheme()
   const { cartQuantity } = useCart()
+  const { navigate } = useNavigation<AppNavigationRoutesProps>()
+
+  const handleNavigateToCart = () => {
+    navigate('cart')
+  }
 
   return (
-    <CartIconWithBadgeContainer>
+    <CartIconWithBadgeContainer onPress={handleNavigateToCart}>
       {cartQuantity > 0 && (
         <BadgeContainer bgColor={bgColor}>
           <BadgeCounter>{cartQuantity}</BadgeCounter>

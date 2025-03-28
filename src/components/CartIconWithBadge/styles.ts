@@ -2,7 +2,7 @@ import styled, { css } from 'styled-components/native'
 
 import theme from '@theme/theme'
 
-export const CartIconWithBadgeContainer = styled.View`
+export const CartIconWithBadgeContainer = styled.TouchableOpacity`
   align-items: center;
   justify-content: center;
   position: relative;
