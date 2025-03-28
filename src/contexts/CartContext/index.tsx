@@ -68,6 +68,18 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
     [],
   )
 
+  const handleRemoveItemToCart = useCallback(
+    (size: number, item: CatalogueItem) => {
+      setCartItems((prev) => {
+        const updatedItems = prev.filter(
+          (cartItem) => cartItem.item.id !== item.id && cartItem.size !== size,
+        )
+        return updatedItems
+      })
+    },
+    [],
+  )
+
   const handleUpdateItemQuantityToCart = useCallback(
     (size: number, item: CatalogueItem, newQuantity: number) => {
       setCartItems((prev) => {
@@ -101,6 +113,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
         cartItems,
         cartQuantity,
         handleAddToCart,
+        handleRemoveItemToCart,
         handleUpdateItemQuantityToCart,
       }}
     >

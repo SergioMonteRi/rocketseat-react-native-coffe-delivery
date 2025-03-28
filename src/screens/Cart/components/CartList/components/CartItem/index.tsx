@@ -2,6 +2,9 @@ import { useState } from 'react'
 import { TouchableOpacity } from 'react-native'
 import { useTheme } from 'styled-components/native'
 import { Minus, Plus, Trash } from 'phosphor-react-native'
+import Swipeable from 'react-native-gesture-handler/ReanimatedSwipeable'
+
+import { useCart } from '@hooks/useCart'
 
 import {
   Size,
@@ -15,10 +18,11 @@ import {
   CounterContainer,
   CartItemContainer,
   TitleAndSizeContainer,
+  SwiapeableLeftContainer,
+  SwiapeableContainerStyles,
 } from './styles'
 
 import { CartItemProps } from './types'
-import { useCart } from '@hooks/useCart'
 
 export const CartItem = (props: CartItemProps) => {
   const { cartItem } = props
@@ -29,7 +33,7 @@ export const CartItem = (props: CartItemProps) => {
   } = cartItem
 
   const { COLORS } = useTheme()
-  const { handleUpdateItemQuantityToCart } = useCart()
+  const { handleRemoveItemToCart, handleUpdateItemQuantityToCart } = useCart()
 
   const [localQuantity, setLocalQuantity] = useState(quantity)
 
@@ -49,38 +53,53 @@ export const CartItem = (props: CartItemProps) => {
     handleUpdateItemQuantityToCart(size, cartItem.item, newQuantity)
   }
 
+  const handleRemove = () => {
+    handleRemoveItemToCart(size, cartItem.item)
+  }
+
   return (
-    <CartItemContainer>
-      <ProductImage width={64} height={64} />
+    <Swipeable
+      containerStyle={SwiapeableContainerStyles.leftContainer}
+      renderRightActions={() => null}
+      onSwipeableOpen={() => handleRemove()}
+      renderLeftActions={() => (
+        <SwiapeableLeftContainer>
+          <Trash size={28} color={COLORS.RED_DARK} />
+        </SwiapeableLeftContainer>
+      )}
+    >
+      <CartItemContainer>
+        <ProductImage width={64} height={64} />
 
-      <InfoContainer>
-        <DetailsContainer>
-          <TitleAndSizeContainer>
-            <Title>{title}</Title>
-            <Size>{size}ml</Size>
-          </TitleAndSizeContainer>
+        <InfoContainer>
+          <DetailsContainer>
+            <TitleAndSizeContainer>
+              <Title>{title}</Title>
+              <Size>{size}ml</Size>
+            </TitleAndSizeContainer>
 
-          <Price>R$ {price}</Price>
-        </DetailsContainer>
+            <Price>R$ {price}</Price>
+          </DetailsContainer>
 
-        <ActionsContainer>
-          <CounterContainer>
-            <TouchableOpacity onPress={handleDecrease}>
-              <Minus size={20} color={COLORS.PURPLE} weight="bold" />
-            </TouchableOpacity>
+          <ActionsContainer>
+            <CounterContainer>
+              <TouchableOpacity onPress={handleDecrease}>
+                <Minus size={20} color={COLORS.PURPLE} weight="bold" />
+              </TouchableOpacity>
 
-            <CounterText>{localQuantity}</CounterText>
+              <CounterText>{localQuantity}</CounterText>
 
-            <TouchableOpacity onPress={handleIncrease}>
-              <Plus size={20} color={COLORS.PURPLE} weight="bold" />
-            </TouchableOpacity>
-          </CounterContainer>
+              <TouchableOpacity onPress={handleIncrease}>
+                <Plus size={20} color={COLORS.PURPLE} weight="bold" />
+              </TouchableOpacity>
+            </CounterContainer>
 
-          <RemoveContainer>
-            <Trash size={20} color={COLORS.PURPLE} />
-          </RemoveContainer>
-        </ActionsContainer>
-      </InfoContainer>
-    </CartItemContainer>
+            <RemoveContainer onPress={() => handleRemove()}>
+              <Trash size={20} color={COLORS.PURPLE} />
+            </RemoveContainer>
+          </ActionsContainer>
+        </InfoContainer>
+      </CartItemContainer>
+    </Swipeable>
   )
 }

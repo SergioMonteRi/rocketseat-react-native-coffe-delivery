@@ -1,3 +1,5 @@
+import theme from '@theme/theme'
+import { StyleSheet } from 'react-native'
 import styled, { css } from 'styled-components/native'
 
 export const CartItemContainer = styled.View`
@@ -9,6 +11,8 @@ export const CartItemContainer = styled.View`
 
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.COLORS.GRAY_600};
+
+  background-color: ${({ theme }) => theme.COLORS.GRAY_900};
 `
 
 export const InfoContainer = styled.View`
@@ -79,3 +83,17 @@ export const RemoveContainer = styled.TouchableOpacity`
 
   background-color: ${({ theme }) => theme.COLORS.GRAY_600};
 `
+
+export const SwiapeableLeftContainer = styled.View`
+  align-items: center;
+  width: 90px;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.COLORS.RED_LIGHT};
+`
+
+export const SwiapeableContainerStyles = StyleSheet.create({
+  leftContainer: {
+    width: '100%',
+    backgroundColor: theme.COLORS.RED_LIGHT,
+  },
+})

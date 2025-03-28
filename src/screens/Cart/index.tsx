@@ -1,14 +1,14 @@
-import { View } from 'react-native'
-
 import { CartHeader } from './components/CartHeader'
 import { CartList } from './components/CartList'
 
+import { CartContainer } from './styles'
+
 export const Cart = () => {
   return (
-    <View>
+    <CartContainer>
       <CartHeader />
 
       <CartList />
-    </View>
+    </CartContainer>
   )
 }
