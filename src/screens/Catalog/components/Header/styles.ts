@@ -25,5 +25,3 @@ export const AnimatedLocationText = styled(Animated.Text)`
     color: ${theme.COLORS.GRAY_900};
   `}
 `
-
-export const CartContainer = styled.TouchableOpacity``

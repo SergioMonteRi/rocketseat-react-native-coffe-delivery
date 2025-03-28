@@ -1,5 +1,5 @@
 import { useTheme } from 'styled-components/native'
-import { MapPin, ShoppingCart } from 'phosphor-react-native'
+import { MapPin } from 'phosphor-react-native'
 import {
   interpolate,
   interpolateColor,
@@ -9,13 +9,13 @@ import {
 import { useLocation } from '@hooks/useLocation'
 
 import {
-  CartContainer,
   LocationContainer,
   AnimatedLocationText,
   AnimatedHeaderContainer,
 } from './styles'
 
 import { HeaderProps } from './types'
+import { CartIconWithBadge } from '@components/CartIconWithBadge'
 
 export const Header = (props: HeaderProps) => {
   const { filterPositionY, scrollY } = props
@@ -58,9 +58,7 @@ export const Header = (props: HeaderProps) => {
         </AnimatedLocationText>
       </LocationContainer>
 
-      <CartContainer>
-        <ShoppingCart color={COLORS.YELLOW_DARK} size={20} weight="fill" />
-      </CartContainer>
+      <CartIconWithBadge bgColor="YELLOW_DARK" />
     </AnimatedHeaderContainer>
   )
 }

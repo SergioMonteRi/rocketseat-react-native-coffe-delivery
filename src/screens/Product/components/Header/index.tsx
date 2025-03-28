@@ -1,22 +1,16 @@
 import { TouchableOpacity } from 'react-native'
 import { useTheme } from 'styled-components/native'
 import { useNavigation } from '@react-navigation/native'
-import { ArrowLeft, ShoppingCart } from 'phosphor-react-native'
-
-import { useCart } from '@hooks/useCart'
+import { ArrowLeft } from 'phosphor-react-native'
 
 import { AppNavigationRoutesProps } from '@routes/AppRoutes/types'
 
-import {
-  CartCounter,
-  CartContainer,
-  HeaderContainer,
-  CartCounterContainer,
-} from './styles'
+import { CartIconWithBadge } from '@components/CartIconWithBadge'
+
+import { HeaderContainer } from './styles'
 
 export const Header = () => {
   const { COLORS } = useTheme()
-  const { cartQuantity } = useCart()
 
   const navigator = useNavigation<AppNavigationRoutesProps>()
 
@@ -30,14 +24,7 @@ export const Header = () => {
         <ArrowLeft color={COLORS.WHITE} size={24} />
       </TouchableOpacity>
 
-      <CartContainer>
-        {cartQuantity > 0 && (
-          <CartCounterContainer>
-            <CartCounter>{cartQuantity}</CartCounter>
-          </CartCounterContainer>
-        )}
-        <ShoppingCart color={COLORS.PURPLE} size={20} weight="fill" />
-      </CartContainer>
+      <CartIconWithBadge />
     </HeaderContainer>
   )
 }
