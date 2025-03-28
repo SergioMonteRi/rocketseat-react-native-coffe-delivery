@@ -27,7 +27,7 @@ export const Product = () => {
         <Content itemDetails={itemDetails} />
       </ProductContentContainer>
 
-      <Footer />
+      <Footer itemDetails={itemDetails} />
     </ProductScrollContainer>
   )
 }

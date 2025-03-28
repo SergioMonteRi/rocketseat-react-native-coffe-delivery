@@ -12,6 +12,8 @@ import {
 
 import { Routes } from '@routes/index'
 
+import { CartContextProvider } from '@contexts/CartContext'
+
 import theme from '@theme/theme'
 
 export default function App() {
@@ -30,7 +32,9 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <StatusBar style="auto" />
 
-        <Routes />
+        <CartContextProvider>
+          <Routes />
+        </CartContextProvider>
       </ThemeProvider>
     </GestureHandlerRootView>
   )

@@ -3,6 +3,8 @@ import { TouchableOpacity } from 'react-native'
 import { useTheme } from 'styled-components/native'
 import { Minus, Plus } from 'phosphor-react-native'
 
+import { useCart } from '@hooks/useCart'
+
 import { SizeSelectorOption } from './components/SizeSelectorOption'
 
 import {
@@ -17,10 +19,15 @@ import {
   AddToCardQuantitySelectorContainer,
 } from './styles'
 
+import { FooterProps } from './types'
+
 const SIZES = [114, 140, 227]
 
-export const Footer = () => {
+export const Footer = (props: FooterProps) => {
+  const { itemDetails } = props
+
   const { COLORS } = useTheme()
+  const { handleAddToCart } = useCart()
 
   const [selectedSize, setSelectedSize] = useState<number>()
   const [quantity, setQuantity] = useState(1)
@@ -35,10 +42,6 @@ export const Footer = () => {
 
   const handleDecreaseQuantity = () => {
     setQuantity((prev) => Math.max(prev - 1, 1))
-  }
-
-  const handleAddProduct = () => {
-    console.log(quantity, selectedSize)
   }
 
   return (
@@ -71,7 +74,12 @@ export const Footer = () => {
           </TouchableOpacity>
         </AddToCardQuantitySelectorContainer>
 
-        <AddToCartButton disabled={!selectedSize} onPress={handleAddProduct}>
+        <AddToCartButton
+          disabled={!selectedSize}
+          onPress={() =>
+            selectedSize && handleAddToCart(itemDetails, quantity, selectedSize)
+          }
+        >
           <AddToCartButtonText>ADICIONAR</AddToCartButtonText>
         </AddToCartButton>
       </AddToCartContainer>
