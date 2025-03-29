@@ -53,15 +53,12 @@ export const CartItem = (props: CartItemProps) => {
     handleUpdateItemQuantityToCart(size, cartItem.item, newQuantity)
   }
 
-  const handleRemove = () => {
-    handleRemoveItemToCart(size, cartItem.item)
-  }
-
   return (
     <Swipeable
+      leftThreshold={10}
       containerStyle={SwiapeableContainerStyles.leftContainer}
       renderRightActions={() => null}
-      onSwipeableOpen={() => handleRemove()}
+      onSwipeableOpen={() => handleRemoveItemToCart(size, cartItem.item)}
       renderLeftActions={() => (
         <SwiapeableLeftContainer>
           <Trash size={28} color={COLORS.RED_DARK} />
@@ -94,7 +91,9 @@ export const CartItem = (props: CartItemProps) => {
               </TouchableOpacity>
             </CounterContainer>
 
-            <RemoveContainer onPress={() => handleRemove()}>
+            <RemoveContainer
+              onPress={() => handleRemoveItemToCart(size, cartItem.item)}
+            >
               <Trash size={20} color={COLORS.PURPLE} />
             </RemoveContainer>
           </ActionsContainer>

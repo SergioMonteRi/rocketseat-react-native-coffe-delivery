@@ -1,6 +1,7 @@
-import theme from '@theme/theme'
 import { StyleSheet } from 'react-native'
 import styled, { css } from 'styled-components/native'
+
+import theme from '@theme/theme'
 
 export const CartItemContainer = styled.View`
   flex-direction: row;
