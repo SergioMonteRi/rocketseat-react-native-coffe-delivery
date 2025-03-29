@@ -14,6 +14,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
   >([])
 
   const [cartQuantity, setCartQuantity] = useState<number>(0)
+  const [cartTotalValue, setCartTotalValue] = useState<number>(0)
 
   const handleAddToCart = useCallback(
     (item: CatalogueItem, quantity: number, size: number) => {
@@ -78,7 +79,14 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       0,
     )
 
+    const totalValue = cartItems.reduce((total, item) => {
+      const priceNumber = parseFloat(item.item.price.replace(',', '.'))
+
+      return total + priceNumber * item.quantity
+    }, 0)
+
     setCartQuantity(totalQuantity)
+    setCartTotalValue(totalValue)
   }, [cartItems])
 
   return (
@@ -86,6 +94,7 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
       value={{
         cartItems,
         cartQuantity,
+        cartTotalValue,
         handleAddToCart,
         handleRemoveItemToCart,
         handleUpdateItemQuantityToCart,
