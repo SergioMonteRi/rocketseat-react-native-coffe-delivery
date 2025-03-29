@@ -42,8 +42,6 @@ export const CartContextProvider = ({ children }: CartContextProviderProps) => {
 
   const handleRemoveItemToCart = useCallback(
     (size: number, item: CatalogueItem) => {
-      console.log(size, item)
-
       setCartItems((prev) => {
         const updatedItems = prev.filter(
           (cartItem) =>

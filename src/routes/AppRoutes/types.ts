@@ -8,6 +8,7 @@ export type AppRoutesProps = {
     itemDetails: CatalogueItem
   }
   cart: undefined
+  checkoutSuccess: undefined
 }
 
 export type AppNavigationRoutesProps = NativeStackNavigationProp<AppRoutesProps>

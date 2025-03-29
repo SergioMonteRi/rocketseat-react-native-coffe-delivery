@@ -1,3 +1,5 @@
+import { StatusBar } from 'react-native'
+
 import { useCart } from '@hooks/useCart'
 
 import { CartList } from './components/CartList'
@@ -5,12 +7,9 @@ import { CartHeader } from './components/CartHeader'
 import { CartFooter } from './components/CartFooter'
 
 import { CartContainer } from './styles'
-import { StatusBar } from 'react-native'
 
 export const Cart = () => {
   const { cartTotalValue } = useCart()
-
-  console.log(cartTotalValue)
 
   return (
     <CartContainer>

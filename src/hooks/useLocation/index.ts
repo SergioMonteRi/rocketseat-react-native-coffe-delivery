@@ -41,7 +41,6 @@ export const useLocation = () => {
       }
     } catch (error) {
       Alert.alert('Erro', 'Não foi possível obter a localização')
-      console.error(error)
     }
   }, [])
 
