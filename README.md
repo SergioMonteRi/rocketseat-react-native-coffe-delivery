@@ -6,7 +6,12 @@
 Coffee Delivery is a project developed with **Expo** and **React Native**, focused on delivering an interactive and fluid experience for ordering coffee.  
 
 ## ✨ Demo  
-![App Demo](./assets/demo/demo.gif)
+Here’s a quick look at the app in action:  
+
+<p align="center">
+  <img src="./assets/demo/demo1.gif" alt="App Demo 1" width="45%"/>
+  <img src="./assets/demo/demo2.gif" alt="App Demo 2" width="45%"/>
+</p>
 
 ## 💫 Main Goals  
 - 🎨 Animate SVGs to enhance user experience.  
