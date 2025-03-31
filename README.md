@@ -2,12 +2,11 @@
 
 ![Expo](https://img.shields.io/badge/Expo-React%20Native-blue)  
 ![Platform](https://img.shields.io/badge/Platform-Android%20%7C%20iOS-green)  
-![Platform](https://img.shields.io/badge/Platform-iOS%20%7C%20iOS-green)
 
 Coffee Delivery is a project developed with **Expo** and **React Native**, focused on delivering an interactive and fluid experience for ordering coffee.  
 
 ## ✨ Demo  
-> _(Insert a GIF or an image showcasing the app here)_  
+![App Demo](assets/demo.gif)
 
 ## 💫 Main Goals  
 - 🎨 Animate SVGs to enhance user experience.  
